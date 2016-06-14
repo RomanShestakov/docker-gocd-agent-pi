@@ -31,9 +31,9 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && mkdir -p /var/lib/go-agent \
     && mkdir -p /var/go \
     # && curl -fSL "https://download.go.cd/binaries/$GO_VERSION/deb/go-agent-$GO_VERSION.deb" -o go-agent.deb \
-    && curl -fSL "https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip" -o go-agent.zip \
-    && unzip go-agent.zip -d /var/lib/go-agent \
-    && rm -rf go-agent.zip \
+    && wget https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
+    && unzip go-agent-$GO_VERSION.zip -d /var/lib/go-agent \
+    && rm -rf go-agent-$GO_VERSION.zip \
     && sed -i -e "s/DAEMON=Y/DAEMON=N/" /etc/default/go-agent \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
