@@ -38,7 +38,8 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     ##&& sed -i -e "s/DAEMON=Y/DAEMON=N/" /etc/default/go-agent \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
-    && chown -R ${USER_NAME}:${GROUP_NAME} /var/go \
+    && chown -R ${USER_NAME}:${GROUP_NAME} /var/go
+    ## && chown -R ${USER_NAME}:${GROUP_NAME} /var/go \
     ##&& groupmod -g 200 ssh
 
 # runtime environment variables
