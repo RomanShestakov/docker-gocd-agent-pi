@@ -35,7 +35,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     # && curl -fSL "https://download.go.cd/binaries/$GO_VERSION/deb/go-agent-$GO_VERSION.deb" -o go-agent.deb \
     && wget --no-check-certificate -O go-agent.zip https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
     && unzip go-agent.zip -d /var/lib/ \
-    && export GO_VER=echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]"
+    && GO_VER=echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]"
     && ln -s /var/lib/go-agent-${GO_VER} /var/lib/go-agent
     && rm -rf go-agent.zip \
     && sed -i -e "s/DAEMON=Y/DAEMON=N/" /etc/default/go-agent \
