@@ -25,14 +25,18 @@ ENV GO_VERSION=16.5.0-3305 \
     GROUP_NAME=go \
     GROUP_ID=999
 
+#ENV GO_VER=echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]"
+
 # install go agent
 RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && useradd -r -g $GROUP_NAME -u $USER_ID -d /var/go $USER_NAME \
-    && mkdir -p /var/lib/go-agent \
+    && mkdir -p /var/lib/ \
     && mkdir -p /var/go \
     # && curl -fSL "https://download.go.cd/binaries/$GO_VERSION/deb/go-agent-$GO_VERSION.deb" -o go-agent.deb \
     && wget --no-check-certificate -O go-agent.zip https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
-    && unzip go-agent.zip -d /var/lib \
+    && unzip go-agent.zip -d /var/lib/ \
+    && export GO_VER=echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]"
+    && ln -s /var/lib/go-agent-${GO_VER} /var/lib/go-agent
     && rm -rf go-agent.zip \
     && sed -i -e "s/DAEMON=Y/DAEMON=N/" /etc/default/go-agent \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
