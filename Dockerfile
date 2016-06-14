@@ -33,7 +33,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     # && curl -fSL "https://download.go.cd/binaries/$GO_VERSION/deb/go-agent-$GO_VERSION.deb" -o go-agent.deb \
     && wget --no-check-certificate -O go-agent.zip https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
     && unzip go-agent.zip -d /var/lib/ \
-    && ln -s /var/lib/go-agent-16.5.0 /var/lib/go-agent
+    && ln -s /var/lib/go-agent-16.5.0 /var/lib/go-agent \
     && rm -rf go-agent.zip \
     && sed -i -e "s/DAEMON=Y/DAEMON=N/" /etc/default/go-agent \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
