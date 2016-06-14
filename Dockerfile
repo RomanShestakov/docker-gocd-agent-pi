@@ -39,7 +39,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/go \
-    && groupmod -g 200 ssh
+    ##&& groupmod -g 200 ssh
 
 # runtime environment variables
 ENV GO_SERVER=localhost \
