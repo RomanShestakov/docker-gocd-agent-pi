@@ -29,7 +29,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && mkdir -p /var/go \
     && wget --no-check-certificate -O go-agent.zip https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
     && unzip go-agent.zip -d /var/lib/ \
-    && ln -s /var/lib/go-agent-$(echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]") /var/lib/go-agent \
+    && mv /var/lib/go-agent-$(echo ${GO_VERSION} | grep -o "[0-9][0-9].[0-9].[0-9]") /var/lib/go-agent \
     && rm -rf go-agent.zip \
     && echo "export PATH=$PATH" | tee -a /var/go/.profile \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
