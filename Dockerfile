@@ -35,8 +35,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && chmod 775 -R /var/lib/go-agent \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/go
-    ## && chown -R ${USER_NAME}:${GROUP_NAME} /var/go \
-    ##&& groupmod -g 200 ssh
+
 
 # runtime environment variables
 ENV GO_SERVER=192.168.1.79 \
