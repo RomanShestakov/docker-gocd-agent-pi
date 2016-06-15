@@ -38,11 +38,11 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     ##&& groupmod -g 200 ssh
 
 # runtime environment variables
-ENV GO_SERVER=localhost \
-    GO_SERVER_PORT=8153 \
+ENV GO_SERVER=192.168.1.79 \
+    GO_SERVER_PORT=32783 \
     AGENT_MEM=128m \
     AGENT_MAX_MEM=256m \
-    AGENT_KEY="" \
+    AGENT_KEY="388b633a88de126531afa41eff9aa69e" \
     AGENT_RESOURCES="" \
     AGENT_ENVIRONMENTS="" \
     AGENT_HOSTNAME="" \
