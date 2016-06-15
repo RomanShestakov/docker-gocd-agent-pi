@@ -46,7 +46,7 @@ ENV GO_SERVER=localhost \
     AGENT_RESOURCES="" \
     AGENT_ENVIRONMENTS="" \
     AGENT_HOSTNAME="" \
-    DOCKER_GID_ON_HOST=""
+    DOCKER_GID_ON_HOST="" \
     DAEMON=N
 
 COPY ./docker-entrypoint.sh /
