@@ -66,13 +66,13 @@ done;
 
 echo "...starting agent..."
 
-# start agent as go user
-sudo -u ${USER_NAME} AGENT_MEM=$AGENT_MEM AGENT_MAX_MEM=$AGENT_MAX_MEM /var/lib/go-agent/agent.sh &;
+# # start agent as go user
+# sudo -u ${USER_NAME} AGENT_MEM=$AGENT_MEM AGENT_MAX_MEM=$AGENT_MAX_MEM /var/lib/go-agent/agent.sh &;
 
-# wait for agent to start logging
-while [ ! -f /var/log/go-agent/go-agent-bootstrapper.log ];
-    do sleep 1;
-done;
+# # wait for agent to start logging
+# while [ ! -f /var/log/go-agent/go-agent-bootstrapper.log ];
+#     do sleep 1;
+# done;
 
-# tail logs, to be replaced with logs that automatically go to stdout/stderr so go.cd crashing will crash the container
-sudo -u ${USER_NAME} exec tail -F /var/log/go-agent/*
+# # tail logs, to be replaced with logs that automatically go to stdout/stderr so go.cd crashing will crash the container
+# sudo -u ${USER_NAME} exec tail -F /var/log/go-agent/*
