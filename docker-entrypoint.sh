@@ -57,14 +57,17 @@ if [ -n "$AGENT_KEY" ];
     fi;
 fi;
 
+
 # wait for server to be available
 until curl -s -o /dev/null "http://${GO_SERVER}:${GO_SERVER_PORT}";
     do sleep 5;
     echo "Waiting for http://${GO_SERVER}:${GO_SERVER_PORT}";
 done;
 
+echo "...starting agent..."
+
 # start agent as go user
-(sudo -u ${USER_NAME} "AGENT_MEM=$AGENT_MEM AGENT_MAX_MEM=$AGENT_MAX_MEM /var/lib/go-agent/agent.sh" &);
+sudo -u ${USER_NAME} AGENT_MEM=$AGENT_MEM AGENT_MAX_MEM=$AGENT_MAX_MEM /var/lib/go-agent/agent.sh &;
 
 # wait for agent to start logging
 while [ ! -f /var/log/go-agent/go-agent-bootstrapper.log ];
@@ -72,4 +75,4 @@ while [ ! -f /var/log/go-agent/go-agent-bootstrapper.log ];
 done;
 
 # tail logs, to be replaced with logs that automatically go to stdout/stderr so go.cd crashing will crash the container
-sudo -u ${USER_NAME} "exec tail -F /var/log/go-agent/*"
+sudo -u ${USER_NAME} exec tail -F /var/log/go-agent/*
