@@ -66,7 +66,7 @@ RUN \
 
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     dpkg -i erlang-solutions_1.0_all.deb && \
-    sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list &&
+    sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list
 
 RUN apt-get update
 RUN apt-get -y install esl-erlang=1:$ERLANG_VERSION
