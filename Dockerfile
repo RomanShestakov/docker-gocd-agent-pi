@@ -58,7 +58,7 @@ RUN \
   libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev openssl fop xsltproc \
   libmozjs185-1.0 libmozjs185-dev libcurl4-openssl-dev libicu-dev wget curl
 
-RUN cd /tmp; wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+RUN cd /tmp; wget --no-check-certificate https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     dpkg -i erlang-solutions_1.0_all.deb
 
 RUN apt-get update
