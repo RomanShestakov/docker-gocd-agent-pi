@@ -60,13 +60,12 @@ RUN \
   libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev openssl fop xsltproc \
   libmozjs185-1.0 libmozjs185-dev libcurl4-openssl-dev libicu-dev wget curl
 
-#RUN echo "deb http://binaries.erlang-solutions.com/debian wheezy contrib" | sudo tee -a /etc/apt/sources.list.d/erlang-solutions.list
+RUN echo "deb http://binaries.erlang-solutions.com/debian wheezy contrib" | sudo tee -a /etc/apt/sources.list.d/erlang-solutions.list
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
 RUN dpkg -i erlang-solutions_1.0_all.deb
-#    sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list
+RUN sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list
 RUN apt-get update
 RUN apt-get -y install erlang-mini=1:$ERLANG_VERSION
-
 
 COPY ./docker-entrypoint.sh /
 
