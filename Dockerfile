@@ -61,18 +61,11 @@ RUN \
   libmozjs185-1.0 libmozjs185-dev libcurl4-openssl-dev libicu-dev wget curl
 
 RUN echo "deb http://binaries.erlang-solutions.com/debian wheezy contrib" | sudo tee -a /etc/apt/sources.list.d/erlang-solutions.list
-# RUN wget --no-check-certificate --quiet -O - http://binaries.erlang-solutions.com/debian/erlang_solutions.asc | sudo apt-key add -
-
-# RUN cd /tmp; wget --no-check-certificate https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
-#     dpkg -i erlang-solutions_1.0_all.deb
-
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     dpkg -i erlang-solutions_1.0_all.deb && \
-    sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list
-
+    #sed -i -e "s/squeeze/wheezy/g" /etc/apt/sources.list.d/erlang-solutions.list
 RUN apt-get update
-#RUN apt-get -y install esl-erlang=1:$ERLANG_VERSION
-RUN apt-get -y install esl-erlang
+RUN apt-get -y install erlang-mini=1:$ERLANG_VERSION
 
 
 COPY ./docker-entrypoint.sh /
