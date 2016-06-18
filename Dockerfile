@@ -40,7 +40,7 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
 
 # runtime environment variables
 ENV GO_SERVER=192.168.1.79 \
-    GO_SERVER_PORT=32783 \
+    GO_SERVER_PORT=8153 \
     AGENT_MEM=128m \
     AGENT_MAX_MEM=256m \
     AGENT_KEY="388b633a88de126531afa41eff9aa69e" \
