@@ -60,13 +60,12 @@ RUN \
 
 RUN echo "deb http://binaries.erlang-solutions.com/debian wheezy contrib" >> /etc/apt/sources.list.d/erlang.list
 
-# RUN cd /tmp; wget --no-check-certificate https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
-#     dpkg -i erlang-solutions_1.0_all.deb
+RUN cd /tmp; wget --no-check-certificate https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+    dpkg -i erlang-solutions_1.0_all.deb
 
 RUN apt-get update
-#RUN apt-get -y install esl-erlang=1:$ERLANG_VERSION
-RUN apt-get -y install esl-erlang erlang-mode
-
+RUN apt-get -y install esl-erlang=1:$ERLANG_VERSION
+#RUN apt-get -y install esl-erlang erlang-mode
 
 COPY ./docker-entrypoint.sh /
 
