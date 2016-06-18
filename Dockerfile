@@ -26,6 +26,7 @@ ENV GO_VERSION=16.5.0-3305 \
 RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && useradd -r -g $GROUP_NAME -u $USER_ID -d /var/go $USER_NAME \
     && mkdir -p /var/lib/ \
+    && mkdir -p /var/log/go-agent \
     && mkdir -p /var/go \
     && wget --no-check-certificate -O go-agent.zip https://download.go.cd/binaries/$GO_VERSION/generic/go-agent-$GO_VERSION.zip \
     && unzip go-agent.zip -d /var/lib/ \
