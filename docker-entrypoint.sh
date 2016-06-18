@@ -64,7 +64,17 @@ until curl -s -o /dev/null "http://${GO_SERVER}:${GO_SERVER_PORT}";
 done;
 
 # # start agent as go user
-sudo -u ${USER_NAME} AGENT_MEM=$AGENT_MEM AGENT_MAX_MEM=$AGENT_MAX_MEM /var/lib/go-agent/agent.sh &
+sudo -u ${USER_NAME} \
+     AGENT_MEM=$AGENT_MEM \
+     AGENT_MAX_MEM=$AGENT_MAX_MEM \
+     GO_SERVER=$GO_SERVER \
+     GO_SERVER_PORT=$GO_SERVER_PORT \
+     AGENT_KEY=$AGENT_KEY \
+     AGENT_HOSTNAME=$AGENT_HOSTNAME \
+     AGENT_RESOURCES=$AGENT_RESOURCES \
+     AGENT_ENVIRONMENTS=$AGENT_ENVIRONMENTS \
+     DAEMON=$DAEMON \
+     /var/lib/go-agent/agent.sh &
 
 # wait for agent to start logging
 while [ ! -f /var/log/go-agent/go-agent-bootstrapper.log ];
