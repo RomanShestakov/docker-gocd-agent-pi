@@ -22,6 +22,8 @@ ENV GO_VERSION=16.5.0-3305 \
     GROUP_NAME=go \
     GROUP_ID=999
 
+ENV ERLANG_VERSION=17.5.3
+
 # install go agent
 RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && useradd -r -g $GROUP_NAME -u $USER_ID -d /var/go $USER_NAME \
@@ -37,7 +39,6 @@ RUN groupadd -r -g $GROUP_ID $GROUP_NAME \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/lib/go-agent \
     && chown -R ${USER_NAME}:${GROUP_NAME} /var/go
 
-
 # runtime environment variables
 ENV GO_SERVER=192.168.1.79 \
     GO_SERVER_PORT=8153 \
@@ -49,6 +50,20 @@ ENV GO_SERVER=192.168.1.79 \
     AGENT_HOSTNAME="gocd-pi" \
     DOCKER_GID_ON_HOST="" \
     DAEMON=N
+
+# add erlang
+RUN \
+  apt-get update && \
+  apt-get --fix-missing -y install build-essential autoconf libncurses5-dev \
+  libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev openssl fop xsltproc \
+  libmozjs185-1.0 libmozjs185-dev libcurl4-openssl-dev libicu-dev wget curl
+
+RUN cd /tmp; wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
+    dpkg -i erlang-solutions_1.0_all.deb
+
+RUN apt-get update
+RUN apt-get -y install esl-erlang=1:$ERLANG_VERSION
+
 
 COPY ./docker-entrypoint.sh /
 
