@@ -72,7 +72,7 @@ RUN \
 
 RUN set -xe \
     && wget --no-check-certificate -O /tmp/otp-src.tar.gz http://erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz \
-    && tar -xvzf /tmp/otp-src.tar.gz
+    && tar -xvzf /tmp/otp-src.tar.gz \
     && rm /tmp/otp-src.tar.gz \
     && cd /tmp/otp-src \
     && ./otp_build autoconf \
