@@ -71,13 +71,13 @@ RUN \
 # RUN apt-get -y install erlang-mini=1:$ERLANG_VERSION
 
 RUN set -xe \
-    && wget --no-check-certificate -O /tmp/otp-src.tar.gz http://erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz \
-    && tar -xvzf /tmp/otp-src.tar.gz \
-    && rm /tmp/otp-src.tar.gz \
+    && wget --no-check-certificate -O /tmp/otp_src_${ERLANG_VERSION}.tar.gz http://erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz \
+    && cd /tmp \
+    && tar -xvzf /tmp/otp_src_${ERLANG_VERSION}.tar.gz \
+    && rm /tmp/otp_src_${ERLANG_VERSION}.tar.gz \
     && cd /tmp/otp_src_${ERLANG_VERSION} \
-    && ./otp_build autoconf \
     && ./configure \
-    && make -j $(nproc) \
+    && make \
     && make install \
     && rm -rf /tmp/otp_src_${ERLANG_VERSION}
 
