@@ -15,6 +15,9 @@ RUN apt-get update \
     && git config --global core.preloadindex true \
     && git config --global gc.auto 256
 
+# add certificate
+RUN apt-get install ca-certificates
+
 # build time environment variables
 ENV GO_VERSION=16.5.0-3305 \
     USER_NAME=go \
