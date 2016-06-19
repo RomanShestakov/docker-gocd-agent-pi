@@ -74,12 +74,12 @@ RUN set -xe \
     && wget --no-check-certificate -O /tmp/otp-src.tar.gz http://erlang.org/download/otp_src_${ERLANG_VERSION}.tar.gz \
     && tar -xvzf /tmp/otp-src.tar.gz \
     && rm /tmp/otp-src.tar.gz \
-    && cd /tmp/otp-src \
+    && cd /tmp/otp_src_${ERLANG_VERSION} \
     && ./otp_build autoconf \
     && ./configure \
     && make -j $(nproc) \
     && make install \
-    && rm -rf /tmp/src/otp-src
+    && rm -rf /tmp/otp_src_${ERLANG_VERSION}
 
 COPY ./docker-entrypoint.sh /
 
