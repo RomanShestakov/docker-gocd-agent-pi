@@ -16,7 +16,7 @@ RUN apt-get update \
     && git config --global gc.auto 256
 
 # add certificate
-RUN apt-get install --reinstall ca-certificates ca-certificates-java
+RUN apt-get update && apt-get install -y ca-certificates
 
 # build time environment variables
 ENV GO_VERSION=16.5.0-3305 \
