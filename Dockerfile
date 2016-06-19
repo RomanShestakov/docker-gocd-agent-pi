@@ -71,18 +71,15 @@ RUN \
 # RUN apt-get -y install erlang-mini=1:$ERLANG_VERSION
 
 RUN set -xe \
-    && curl -SL https://github.com/erlang/otp/archive/${ERLANG_VERSION}.tar.gz -o otp-src.tar.gz \
-    #&& echo "${OTP_DOWNLOAD_SHA}  otp-src.tar.gz" | sha256sum -c - \
-    && mkdir -p /usr/src/otp-src \
-    && tar -xzC /usr/src/otp-src --strip-components=1 -f otp-src.tar.gz \
-    && rm otp-src.tar.gz \
-    && cd /usr/src/otp-src \
+    && wget --no-check-certificate -O /tmp/otp-src.tar.gz https://github.com/erlang/otp/archive/${ERLANG_VERSION}.tar.gz \
+    && tar -xvzf /tmp/otp-src.tar.gz
+    && rm /tmp/otp-src.tar.gz \
+    && cd /tmp/otp-src \
     && ./otp_build autoconf \
     && ./configure \
     && make -j $(nproc) \
     && make install \
-    && rm -rf /usr/src/otp-src
-
+    && rm -rf /tmp/src/otp-src
 
 COPY ./docker-entrypoint.sh /
 
