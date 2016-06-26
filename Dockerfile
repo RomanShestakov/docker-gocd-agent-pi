@@ -52,7 +52,7 @@ ENV GO_SERVER=192.168.1.79 \
     AGENT_KEY="388b633a88de126531afa41eff9aa69e" \
     AGENT_RESOURCES="pi,erlang" \
     AGENT_ENVIRONMENTS="" \
-    AGENT_HOSTNAME="gocd-pi" \
+    #AGENT_HOSTNAME="gocd-pi" \
     DOCKER_GID_ON_HOST="" \
     DAEMON=N
 
